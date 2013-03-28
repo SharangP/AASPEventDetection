@@ -1,0 +1,21 @@
+Things we should try:
+
+GENERAL:
+
+adaBoost to choose # & which features
+longer windows with overlap (20-100 ms)
+reduce dimensionality using PCA
+different features may need different window lengths, center at event
+
+SEGMENTATION:
+
+using 6 features: loudness, spectral centroid, spectral sparsity, temporal sparsity, transient index, harmonicity
+
+thresholding STFT
+
+
+CLASSIFICATION:
+
+Two levels of HMMS:
+    1. decide on # of HMMS using Bayesian Information Criterion (BIC), group events into clusters of similar things
+    2. once the cluster is chosen using the first HMM layer, decide on the specific event by passing through another set of HMMs, which operate on features specific to each cluster.

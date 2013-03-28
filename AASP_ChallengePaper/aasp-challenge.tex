@@ -1,0 +1,154 @@
+% --------------------------------------------------------------------------
+% Template for AASP Challenge extended abstracts; 
+% to be used with: aasp.sty  - LaTeX style file, and
+%          IEEEbib.bst - IEEE bibliography style file.
+%
+% --------------------------------------------------------------------------
+
+\documentclass{article}
+\usepackage{aasp,amsmath,graphicx,url,times}
+%\usepackage{aasp,amssymb,amsmath,graphicx,times,url}
+
+% Example definitions.
+% --------------------
+\def\defeqn{\stackrel{\triangle}{=}}
+\newcommand{\symvec}[1]{{\mbox{\boldmath $#1$}}}
+\newcommand{\symmat}[1]{{\mbox{\boldmath $#1$}}}
+
+% Title.
+% --------------------
+\title{Event Detection and Classification}
+
+% Single addresses (uncomment and modify for single-address case).
+% --------------------
+\name{Sameer Chauhan, Sharang Phadke, Christian Sherland\thanks{Thanks to the Cooper Union}}
+\address{Author Affiliation(s)}
+
+% For example:
+% ------------
+\address{Cooper Union for the Advancement of Science and Art\\
+	Electrical Engineering\\
+	41 Cooper Square\\
+	New York, NY 10003}
+
+% Two addresses
+% --------------------
+%\twoauthors
+%  {John Doe\sthanks{Thanks to ABC agency for funding.}}
+%    {ABC University\\
+%     500 Rainy Street,\\
+%     WC1 4AB London, UK \\
+%     johndoe@abc.ac.uk}
+%  {Jane Doe\sthanks{Thanks to XYZ agency for funding.}}
+%    {XYZ University \\
+%     3040 Westfield Avenue \\
+%     New Paltz, NY, USA \\
+%     janedoe@xyz.edu}
+
+\begin{document}
+\ninept
+\maketitle
+
+\begin{sloppy}
+
+\begin{abstract}
+    \input{abstract}
+\end{abstract}
+
+\begin{keywords}
+
+\end{keywords}
+
+\section{Introduction}
+\label{sec:intro}
+\input{intro}
+
+\section{Feature extraction}
+\label{sec:feature}
+\input{features}
+
+\section{Training}
+\label{sec:training}
+\input{training}
+
+\section{Segmentation}
+\label{sec:segmentation}
+\input{segmentation}
+
+\section{Classification}
+\label{sec:classification}
+\input{classification}
+
+\section{Results}
+\label{sec:results}
+\input{results}
+
+\section{Conclusion}
+\label{sec:conclusion}
+\input{conclusion}
+
+% Below is an example of how to insert images. 
+% -------------------------------------------------------------------------
+
+\section{REFERENCES}
+\label{sec:ref}
+
+List and number all bibliographical references at the end 
+of the paper. The references should be numbered in order 
+of appearance in the document. When referring to them in 
+the text, type the corresponding reference number in 
+square brackets as shown at the end of this sentence 
+\cite{cJones2003}, \cite{aSmith2000}. For \LaTeX\ users, 
+the use of the Bib\TeX\ style file IEEEtran.bst is 
+recommended, which is included in the \LaTeX\ paper 
+kit available from the workshop website \cite{aaspweb}.
+
+\section{ACKNOWLEDGMENT}
+\label{sec:ack}
+
+The preferred spelling of the word acknowledgment in 
+America is without an ``e'' after the ``g.'' Try to avoid 
+the stilted expression, ``One of us (R. B. G.) thanks ...''
+Instead, try ``R.B.G.\ thanks ...''  Put sponsor 
+acknowledgments in the unnumbered footnote on the first page.
+
+% -------------------------------------------------------------------------
+% Either list references using the bibliography style file IEEEtran.bst
+\bibliographystyle{IEEEtran}
+\bibliography{refsaasp}
+%
+% or list them by yourself
+% \begin{thebibliography}{9}
+% 
+% \bibitem{aaspweb}
+%   \url{http://www.elec.qmul.ac.uk/digitalmusic/sceneseventschallenge/}.
+%
+% \bibitem{IEEEPDFSpec}
+%   {PDF} specification for {IEEE} {X}plore$^{\textregistered}$,
+%   \url{http://www.ieee.org/portal/cms_docs/pubs/confstandards/pdfs/IEEE-PDF-SpecV401.pdf}.
+%
+% \bibitem{PDFOpenSourceTools}
+%   Creating high resolution {PDF} files for book production with 
+%   open source tools, 
+%   \url{http://www.grassbook.org/neteler/highres_pdf.html}.
+%
+% \bibitem{eWilliams1999}
+% E. Williams, \emph{Fourier Acoustics: Sound Radiation and Nearfield Acoustic
+%   Holography}. London, UK: Academic Press, 1999.
+% 
+% \bibitem{ieeecopyright}
+%   \url{http://www.ieee.org/web/publications/rights/copyrightmain.html}.
+%
+% \bibitem{cJones2003}
+% C. Jones, A. Smith, and E. Roberts, ``A sample paper in conference
+%   proceedings,'' in \emph{Proc. IEEE ICASSP}, vol. II, 2003, pp. 803--806.
+% 
+% \bibitem{aSmith2000}
+% A. Smith, C. Jones, and E. Roberts, ``A sample paper in journals,'' 
+%   \emph{IEEE Trans. Signal Process.}, vol. 62, pp. 291--294, Jan. 2000.
+% 
+% \end{thebibliography}
+
+
+\end{sloppy}
+\end{document}

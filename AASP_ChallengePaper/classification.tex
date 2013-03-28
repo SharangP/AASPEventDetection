@@ -1,0 +1,12 @@
+After a set of event signals has been segmented, the classifier extracts a full set of 
+features for each event signal. For each event, these features are passed into the first
+level classifier. Based upon the output of the first stage classifier, each event is 
+labeled with its subgroup.
+
+Each event signal was then passed through the classifier that corresponds to its subgroup 
+label and reclassified based upon the subset of features that best describes its type of
+event. 
+
+Types were chosen such that members of a given type generally have many similar features. 
+The set of features that is used to determine the specific event that occurred in stage two
+is the set which varies most among the members.

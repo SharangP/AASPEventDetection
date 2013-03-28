@@ -1,0 +1,276 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>readTrainingData</title><meta name="generator" content="MATLAB 8.0"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2013-02-21"><meta name="DC.source" content="readTrainingData.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, tt, code { font-size:12px; }
+pre { margin:0px 0px 20px; }
+pre.error { color:red; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><pre class="codeinput"><span class="comment">% Christian Sherland</span>
+<span class="comment">% 2-14-13</span>
+<span class="comment">% ECE411 - Speech Processing Project 1</span>
+<span class="comment">%</span>
+<span class="comment">%   Read all training set .wav files and</span>
+<span class="comment">%   parse data appropriately so features</span>
+<span class="comment">%   can be handled by HMM/ANN</span>
+<span class="comment">%</span>
+<span class="comment">%   Bugs:</span>
+<span class="comment">%    1. Works. Small loss of data on first index</span>
+<span class="comment">%       to fix 0 index problem.</span>
+<span class="comment">%</span>
+<span class="comment">%    2. Must be placed in the propper directory</span>
+<span class="comment">%       before running</span>
+<span class="comment">%</span>
+
+clear <span class="string">all</span>;
+clc;
+
+<span class="comment">%Get structures containing all pertinent file names</span>
+trainingSoundFiles = dir(<span class="string">'../Datasets/Office Live/singlesounds_stereo/singlesounds_stereo/*.wav'</span>);
+trainingSoundAnnot = dir(<span class="string">'../Datasets/Office Live/singlesounds_annotation/Annotation2/*.txt'</span>);
+
+ceps = zeros(length(trainingSoundFiles),13);
+label = zeros(length(trainingSoundFiles),1);
+
+<span class="comment">%Read signals in one at a time</span>
+<span class="comment">%and feed to hmm to avoid memory overflow</span>
+<span class="keyword">for</span> ii = 1:length(trainingSoundFiles)
+   <span class="comment">%the iith signal</span>
+   [traData,fs] = wavread(strcat(<span class="string">'../Datasets/Office Live/singlesounds_stereo/singlesounds_stereo/'</span>,trainingSoundFiles(ii).name));
+
+   <span class="comment">%the iith signal identification tag</span>
+   fid = fopen(strcat(<span class="string">'../Datasets/Office Live/singlesounds_annotation/Annotation2/'</span>,trainingSoundAnnot(ii).name));
+   traAnnot = textscan(fid,<span class="string">'%f%f'</span>,<span class="string">'delimiter'</span>,<span class="string">'\t'</span>);
+   fclose(fid);
+
+   <span class="comment">%extracted signal and name of event</span>
+   pureTrainingSignal = traData(ceil(traAnnot{1}(1)*fs)+1:floor(traAnnot{2}(1)*fs)-1,1);
+   trainingSignalLabel = trainingSoundAnnot(ii).name(1:find(isletter(trainingSoundAnnot(ii).name)==0,1,<span class="string">'first'</span>)-1);
+
+   <span class="comment">%Extract signal features here</span>
+   ceps(ii,:) = mean(mfcc(pureTrainingSignal,fs),2)';
+   label(ii) = getClassNum(trainingSignalLabel);
+<span class="keyword">end</span>
+
+<span class="comment">%Generate training dataSet</span>
+trainingDataSet = prtDataSetClass(ceps,label);
+
+<span class="comment">%Read time tags for training set</span>
+fid = fopen(<span class="string">'../Datasets/Office Live/events_OL_development/annotation1/script01_bdm.txt'</span>);
+testDataLabelCell = textscan(fid,<span class="string">'%f%f%s'</span>,<span class="string">'delimiter'</span>,<span class="string">'\t'</span>);
+fclose(fid);
+
+<span class="comment">%Read testing dataset sound file</span>
+[y,fs] = wavread(<span class="string">'../Datasets/Office Live/events_OL_development/bformat/script01-01.wav'</span>);
+
+actualSignals = {};     <span class="comment">%eventually preallocate for efficiency</span>
+noise = {};
+</pre><pre class="codeinput"><span class="comment">%Parse testing data signals upon tags</span>
+<span class="keyword">for</span> ii = 1 : length(testDataLabelCell{1})
+   start = ceil(testDataLabelCell{1}(ii)*fs);
+   finish = floor(testDataLabelCell{2}(ii)*fs);
+   actualSignals{ii} = y(start:finish);
+
+   start2 = floor(testDataLabelCell{2}(ii)*fs);
+   startPad= [testDataLabelCell{1}; length(y)/fs];
+   finish2= ceil(startPad(ii+1)*fs);
+
+   noise{ii} = y(start2:finish2);
+<span class="keyword">end</span>
+</pre><pre class="codeinput">subplot(2,1,1)
+plot(noise{1})
+subplot(2,1,2)
+plot(actualSignals{1})
+</pre><img vspace="5" hspace="5" src="readTrainingData_01.png" alt=""> <pre class="codeinput"><span class="comment">%remake ceps and label for test dataSet</span>
+ceps = zeros(numel(actualSignals),13);
+label = zeros(numel(testDataLabelCell{3}),1);
+
+<span class="comment">%Determine relavant features for each signal.</span>
+<span class="keyword">for</span> ii = 1 : numel(actualSignals)
+    ceps(ii,:) = mean(mfcc(actualSignals{ii},fs),2)';
+    label(ii) = getClassNum(testDataLabelCell{3}(ii));
+<span class="keyword">end</span>
+
+<span class="comment">%Generate test dataSet</span>
+testingDataSet = prtDataSetClass(ceps,label);
+
+classifier = prtClassBinaryToMaryOneVsAll;   <span class="comment">% Create a classifier</span>
+classifier.baseClassifier = prtClassGlrt;    <span class="comment">% Set the binary</span>
+
+<span class="comment">% Set the internal Decider</span>
+classifier.internalDecider = prtDecisionMap;
+
+classifier = classifier.train(trainingDataSet);   <span class="comment">% Train</span>
+classes    = run(classifier, testingDataSet);     <span class="comment">% Test</span>
+
+<span class="comment">% Evaluate, plot results</span>
+percentCorr = prtScorePercentCorrect(classes.getX,testingDataSet.getTargets);
+</pre><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2012b</a><br></p></div><!--
+##### SOURCE BEGIN #####
+% Christian Sherland
+% 2-14-13
+% ECE411 - Speech Processing Project 1 
+%
+%   Read all training set .wav files and
+%   parse data appropriately so features
+%   can be handled by HMM/ANN
+%
+%   Bugs:
+%    1. Works. Small loss of data on first index
+%       to fix 0 index problem.
+%    
+%    2. Must be placed in the propper directory
+%       before running
+%   
+
+clear all;
+clc;
+
+%Get structures containing all pertinent file names 
+trainingSoundFiles = dir('../Datasets/Office Live/singlesounds_stereo/singlesounds_stereo/*.wav');
+trainingSoundAnnot = dir('../Datasets/Office Live/singlesounds_annotation/Annotation2/*.txt');
+
+ceps = zeros(length(trainingSoundFiles),13);
+label = zeros(length(trainingSoundFiles),1);
+
+%Read signals in one at a time
+%and feed to hmm to avoid memory overflow
+for ii = 1:length(trainingSoundFiles)
+   %the iith signal
+   [traData,fs] = wavread(strcat('../Datasets/Office Live/singlesounds_stereo/singlesounds_stereo/',trainingSoundFiles(ii).name));
+   
+   %the iith signal identification tag
+   fid = fopen(strcat('../Datasets/Office Live/singlesounds_annotation/Annotation2/',trainingSoundAnnot(ii).name));
+   traAnnot = textscan(fid,'%f%f','delimiter','\t');
+   fclose(fid);
+   
+   %extracted signal and name of event
+   pureTrainingSignal = traData(ceil(traAnnot{1}(1)*fs)+1:floor(traAnnot{2}(1)*fs)-1,1);
+   trainingSignalLabel = trainingSoundAnnot(ii).name(1:find(isletter(trainingSoundAnnot(ii).name)==0,1,'first')-1);
+   
+   %Extract signal features here
+   ceps(ii,:) = mean(mfcc(pureTrainingSignal,fs),2)';
+   label(ii) = getClassNum(trainingSignalLabel);
+end
+
+%Generate training dataSet
+trainingDataSet = prtDataSetClass(ceps,label);
+
+%Read time tags for training set
+fid = fopen('../Datasets/Office Live/events_OL_development/annotation1/script01_bdm.txt');
+testDataLabelCell = textscan(fid,'%f%f%s','delimiter','\t');
+fclose(fid);
+
+%Read testing dataset sound file
+[y,fs] = wavread('../Datasets/Office Live/events_OL_development/bformat/script01-01.wav');
+
+actualSignals = {};     %eventually preallocate for efficiency 
+noise = {};
+%% 
+
+%Parse testing data signals upon tags
+for ii = 1 : length(testDataLabelCell{1})
+   start = ceil(testDataLabelCell{1}(ii)*fs);
+   finish = floor(testDataLabelCell{2}(ii)*fs);
+   actualSignals{ii} = y(start:finish);
+   
+   start2 = floor(testDataLabelCell{2}(ii)*fs);
+   startPad= [testDataLabelCell{1}; length(y)/fs];
+   finish2= ceil(startPad(ii+1)*fs);
+   
+   noise{ii} = y(start2:finish2);
+end
+%%
+subplot(2,1,1)
+plot(noise{1})
+subplot(2,1,2)
+plot(actualSignals{1})
+%%
+
+
+%remake ceps and label for test dataSet
+ceps = zeros(numel(actualSignals),13);
+label = zeros(numel(testDataLabelCell{3}),1);
+
+%Determine relavant features for each signal.
+for ii = 1 : numel(actualSignals)
+    ceps(ii,:) = mean(mfcc(actualSignals{ii},fs),2)';
+    label(ii) = getClassNum(testDataLabelCell{3}(ii));
+end
+
+%Generate test dataSet
+testingDataSet = prtDataSetClass(ceps,label);
+
+classifier = prtClassBinaryToMaryOneVsAll;   % Create a classifier
+classifier.baseClassifier = prtClassGlrt;    % Set the binary 
+                                              
+% Set the internal Decider
+classifier.internalDecider = prtDecisionMap;
+ 
+classifier = classifier.train(trainingDataSet);   % Train
+classes    = run(classifier, testingDataSet);     % Test
+ 
+% Evaluate, plot results
+percentCorr = prtScorePercentCorrect(classes.getX,testingDataSet.getTargets);
+
+##### SOURCE END #####
+--></body></html>

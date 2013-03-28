@@ -1,0 +1,6 @@
+Before events within an input signal can be classified, the segments of the input which contain events 
+muse be extracted. This is done by examining the short time energy and spectral centroid features. 
+The segmenter examines peaks of the features and checks them against a threshold to determine the onset and 
+offset of events in the signal. The onset and offset times are then used to extract the portions
+of the input which contain an event. Extracted portions are then passed to the classification
+stage. 

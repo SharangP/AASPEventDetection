@@ -1,0 +1,53 @@
+% Christian Sherland
+% Sharang Phadke
+% Sameer Chauhan
+% 
+% 2-28-13
+% Speech Processing Project 1
+%
+% hmmStates.m
+%
+%   Descriptions of each event type, # hmm states for each
+%
+
+% wait fuck it theyre all 2 states, except speech and the switch
+% speech: ?
+% switch: 3 states
+
+% alert
+% 2 states
+% looks like 3 states, but state 1 & 2 are similar so 2 states but cyclic
+
+% clearthroat
+% 2 states
+% clearing throat and not clearing throat
+
+% cough
+% 2 states
+% coughing and not..
+
+% doorslam
+% 2 states
+% during and after slam
+
+% drawer
+% 2 states
+% looks like 2 states. pulling out the drawer, and then shutting it
+
+% keyboard
+% 2 states
+% clicking and not clicking
+
+% knock
+% 2 states
+% 
+
+% laughter
+% 2 states
+% laughing and not laughing
+
+% phone
+% 2 states
+% clear 2 states - ringing and not ringing
+
+% ...
