@@ -57,7 +57,7 @@ trainingDS = trainingDS.retainFeatures(retainedFeatures);
 %% Classifier Setup
 classifier = prtClassKnn;          % Create a classifier
 % classifier = prtClassBinaryToMaryOneVsAll;          % Create a classifier
-% classifier.baseClassifier = prtClassGltr;           % Set the binary classifier
+% classifier.baseClassifier = prtClassPlsda;           % Set the binary classifier
 % classifier.internalDecider = prtDecisionMap;        % Set the internal decider
 classifier = classifier.train(trainingDS);          % Train
 

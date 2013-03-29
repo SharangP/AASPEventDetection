@@ -17,30 +17,23 @@ globalVar
 load training.mat
 load development.mat
 
-trainingLabel = trainingLabels;
 %% hmm things
-numStates = 3*ones(1,16); % for each event, # of states
+numStates = 3;
 numFeatures = 5; 
 
-G1 = repmat(prtRvMvn('sigma',eye(numFeatures),'covarianceStructure','diagonal'),numStates(1),1);
-G2 = repmat(prtRvMvn('sigma',eye(numFeatures),'covarianceStructure','diagonal'),numStates(end),1);
+G1 = repmat(prtRvMvn('sigma',eye(numFeatures),'covarianceStructure','diagonal'),numStates,1);
 learnHmm1 = prtRvHmm('components',G1);
-learnHmm2 = prtRvHmm('components',G2);
-
-HMMS = [repmat(learnHmm1,14,1) ; repmat(learnHmm2,2,1)];
+HMMS = repmat(learnHmm1,16,1);
 
 %% Train HMMs
 disp('start training')
 
-eventSetStart = [1; find(diff(trainingLabel))];
-eventSetEnd = [find(diff(trainingLabel)); length(trainingLabel)];
+% eventSetStart = [1; find(diff(trainingLabels))];
+% eventSetEnd = [find(diff(trainingLabels)); length(trainingLabels)];
 
 
-for n = 1:length(eventSetStart)
-    disp(n)
-    features = cellfun(@(x) x(:,1:numFeatures), trainingFeatures(eventSetStart(n):eventSetEnd(n)), 'UniformOutput', false);
-    
-    ds = prtDataSetTimeSeries(features);
+for n = 1:20:length(trainingLabels)
+    ds = prtDataSetTimeSeries(trainingFeatures(n:n+19));
     HMMS(n) = HMMS(n).mle(ds);
 end
 
@@ -58,4 +51,4 @@ for m = 1:length(features2)
     results(m) = find(test == max(test));
 end
 
-percentCorrect =  sum(results == devLabels)/length(trainingLabel);
+percentCorrect =  sum(results == devLabels)/length(trainingLabels);

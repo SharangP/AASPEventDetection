@@ -22,7 +22,7 @@ load training.mat
 load development.mat
 
 numCeps = 13;
-retainedFeatures = [14:19];
+retainedFeatures = [1:19];
 
 %% Create Training Dataset
 % Create the Training Dataset
@@ -32,14 +32,16 @@ trainingDS = trainingDS.setClassNames(getClassName(1:16));
 trainingDS = trainingDS.retainFeatures(retainedFeatures);
 
 %% Pre-process the Dataset
-% Preprocessor = prtPreProcPls;   % try different preprocessing techniques
-% Preprocessor = Preprocessor.train(trainingDS);
-% trainingDataSetProcessed = Preprocessor.run(trainingDS);
+Preprocessor = prtPreProcPca('nComponents',27);   % try different preprocessing techniques
+Preprocessor = Preprocessor.train(trainingDS);
+trainingDS = Preprocessor.run(trainingDS);
 
 %% Classifier Setup
 classifier = prtClassBinaryToMaryOneVsAll;          % Create a classifier
-classifier.baseClassifier = prtClassLibSvm;           % Set the binary classifier
+classifier.baseClassifier = prtClassGlrt;           % Set the binary classifier
 classifier.internalDecider = prtDecisionMap;        % Set the internal decider
+
+% classifier = prtClassMatlabTreeBagger;
 classifier = classifier.train(trainingDS);          % Train
 
 % Try another classifier?
@@ -54,11 +56,15 @@ segDS = prtDataSetClass(cell2mat(segFeatures),segLabelsExpanded);
 segDS = segDS.setClassNames(getClassName(unique(segLabelsExpanded)));
 segDS = segDS.retainFeatures(retainedFeatures);
 
+segDS = Preprocessor.run(segDS);
+
 %% Create Perfectly Segmented Development Dataset
 devLabels2 = labelExpand(devLabels,devFeatures);
 devDS = prtDataSetClass(cell2mat(devFeatures),devLabels2);
 devDS = devDS.setClassNames(getClassName(unique(devLabels)));
 devDS = devDS.retainFeatures(retainedFeatures);
+
+devDS = Preprocessor.run(devDS);
 
 %% Classify Data and Evaluate Results
 segClasses = run(classifier, segDS);
@@ -72,12 +78,12 @@ devPercentCorr = prtScorePercentCorrect(devClasses.getX,devDS.getTargets)
 
 figure(1)
 prtScoreConfusionMatrix(segClasses,segDS);
-title('Classifier Confusion Matrix With Segmenter');
+% title('Classifier Confusion Matrix With Segmenter');
 xticklabel_rotate([],45);
 align(figure(1),'center','center');
 
 figure(2)
 prtScoreConfusionMatrix(devClasses,devDS);
-title('Classifier Confusion Matrix Without Segmenter');
+% title('Classifier Confusion Matrix Without Segmenter');
 xticklabel_rotate([],45);
 align(figure(2),'center','center');

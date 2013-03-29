@@ -19,6 +19,7 @@ numCeps = 13;
 
 entropyBins = 10;
 RolOffThresh = 0.5;
+% longTime = [1 4 14:19];
 
 if ~isempty(varargin)
     tindex = find(strcmp(varargin,'TIMES'),1);
@@ -42,7 +43,6 @@ if iscell(signals)
     
     for n = 1:length(Features)
         FeatureLen = floor(length(signals{n})/(winTime*fs));
-        Meddis = mean(meddis(buffer(signals{n},winTime*fs),fs))';
         
         Features{n} = [...
             melfcc(signals{n},fs,'wintime',winTime,'hoptime',winTime,'numcep',numCeps)'...
@@ -51,9 +51,9 @@ if iscell(signals)
             loudness(signals{n},winTime*fs)'...
             SpectralFlux(signals{n},winTime*fs,winTime*fs)...
             SpectralEntropy(signals{n},winTime*fs,winTime*fs,1024,entropyBins)...
-            SpectralRollOff(signals{n},winTime*fs,winTime*fs,RolOffThresh,fs)'...
-            Meddis(1:FeatureLen)];
-%             spectralSparsity(signals{n},winTime*Fs,Fs)'];
+            SpectralRollOff(signals{n},winTime*fs,winTime*fs,RolOffThresh,fs)'];
+
+%             Features{n} = [Features{n} repmat(mean(Features{n}(:,longTime),1),size(Features{n},1),1)];
     end
     
     if ~isempty(ANNOTS) && ~isempty(TIMES)
@@ -67,7 +67,6 @@ if iscell(signals)
     
 else
     FeatureLen = floor(length(signals)/(winTime*fs));
-    Meddis = mean(meddis(buffer(signals,winTime*fs),fs))';
     
     Features = [...
     melfcc(signals,fs,'wintime',winTime,'hoptime',winTime,'numcep',numCeps)'...
@@ -76,9 +75,9 @@ else
     loudness(signals,winTime*fs)'...
     SpectralFlux(signals,winTime*fs,winTime*fs)...
     SpectralEntropy(signals,winTime*fs,winTime*fs,1024,entropyBins)...
-    SpectralRollOff(signals,winTime*fs,winTime*fs,RolOffThresh,fs)'...
-    Meddis(1:FeatureLen)];
-%     spectralSparsity(signals,winTime*Fs)'];
+    SpectralRollOff(signals,winTime*fs,winTime*fs,RolOffThresh,fs)'];
+
+%     Features = [Features repmat(mean(Features(:,longTime),1),size(Features,1),1)];
 end
 
 end
