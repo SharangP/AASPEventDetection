@@ -35,6 +35,10 @@ for ii = 1:length(trainingSoundFiles)
    trainingSignalLabel = trainingSoundAnnot(ii).name(1:find(isletter(trainingSoundAnnot(ii).name)==0,1,'first')-1);
    trainingLabels(ii) = getClassNum(trainingSignalLabel);
    
+   if ii == 301
+       keyboard
+   end
+   
    % Extract signal features
    trainingFeatures{ii} = getFeatures(pureTrainingSignal,fs,pointOhOne);   
    

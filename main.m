@@ -16,20 +16,20 @@ init;
 globalVar;
 
 %% Get Features from Data
-% loadTrainingData
-% loadDevelopmentData
-load training.mat
-load development.mat
+loadTrainingData
+loadDevelopmentData
+% load training.mat
+% load development.mat
 
-numCeps = 13;
-retainedFeatures = [1:19];
+% numCeps = 13;
+retainedFeatures = [1:57];
 
 %% Create Training Dataset
 % Create the Training Dataset
 trainingLabels2 = labelExpand(trainingLabels,trainingFeatures);
 trainingDS = prtDataSetClass(cell2mat(trainingFeatures),trainingLabels2);
 trainingDS = trainingDS.setClassNames(getClassName(1:16));
-trainingDS = trainingDS.retainFeatures(retainedFeatures);
+% trainingDS = trainingDS.retainFeatures(retainedFeatures);
 
 %% Pre-process the Dataset
 Preprocessor = prtPreProcPca('nComponents',27);   % try different preprocessing techniques
@@ -51,10 +51,10 @@ classifier = classifier.train(trainingDS);          % Train
 %% Segment Development Data and Create Dataset
 [segments, segFs, segTimes] = detectVoiced(devScriptPath);
 [segFeatures, segLabels, segLabelsExpanded] = getFeatures(segments,segFs,pointOhOne,...
-    'TIMES',segTimes,'ANNOTS',devAnnots,'NUMCEPS',numCeps,'CELL');
+    'TIMES',segTimes,'ANNOTS',devAnnots,'CELL');
 segDS = prtDataSetClass(cell2mat(segFeatures),segLabelsExpanded);
 segDS = segDS.setClassNames(getClassName(unique(segLabelsExpanded)));
-segDS = segDS.retainFeatures(retainedFeatures);
+% segDS = segDS.retainFeatures(retainedFeatures);
 
 segDS = Preprocessor.run(segDS);
 
@@ -62,7 +62,7 @@ segDS = Preprocessor.run(segDS);
 devLabels2 = labelExpand(devLabels,devFeatures);
 devDS = prtDataSetClass(cell2mat(devFeatures),devLabels2);
 devDS = devDS.setClassNames(getClassName(unique(devLabels)));
-devDS = devDS.retainFeatures(retainedFeatures);
+% devDS = devDS.retainFeatures(retainedFeatures);
 
 devDS = Preprocessor.run(devDS);
 

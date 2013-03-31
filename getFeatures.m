@@ -15,7 +15,7 @@ function [ Features, Labels, LabelsExpanded ] = getFeatures( signals, fs, winTim
 
 Features = []; Labels = [];
 TIMES = []; ANNOTS = [];
-numCeps = 13;
+numCeps = 20;
 
 entropyBins = 10;
 RolOffThresh = 0.5;
@@ -52,6 +52,9 @@ if iscell(signals)
             SpectralFlux(signals{n},winTime*fs,winTime*fs)...
             SpectralEntropy(signals{n},winTime*fs,winTime*fs,1024,entropyBins)...
             SpectralRollOff(signals{n},winTime*fs,winTime*fs,RolOffThresh,fs)'];
+        
+        LongFeatures = [mean(Features{n},1) std(Features{n},[],1)];
+        Features{n} = [Features{n} repmat(LongFeatures,size(Features{n},1),1)];
 
 %             Features{n} = [Features{n} repmat(mean(Features{n}(:,longTime),1),size(Features{n},1),1)];
     end
@@ -76,6 +79,9 @@ else
     SpectralFlux(signals,winTime*fs,winTime*fs)...
     SpectralEntropy(signals,winTime*fs,winTime*fs,1024,entropyBins)...
     SpectralRollOff(signals,winTime*fs,winTime*fs,RolOffThresh,fs)'];
+
+    LongFeatures = [mean(Features,1) std(Features,[],1)];
+    Features = [Features repmat(LongFeatures,size(Features,1),1)];
 
 %     Features = [Features repmat(mean(Features(:,longTime),1),size(Features,1),1)];
 end
