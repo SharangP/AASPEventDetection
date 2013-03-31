@@ -57,7 +57,7 @@ trainingDS = trainingDS.setClassNames(getClassName(1:16));
 %% Classifier Setup
 classifier = prtClassKnn;          % Create a classifier
 % classifier = prtClassBinaryToMaryOneVsAll;          % Create a classifier
-% classifier.baseClassifier = prtClassPlsda;           % Set the binary classifier
+% classifier.baseClassifier = prtClassGlrt;           % Set the binary classifier
 % classifier.internalDecider = prtDecisionMap;        % Set the internal decider
 classifier = classifier.train(trainingDS);          % Train
 
@@ -65,7 +65,7 @@ classifier = classifier.train(trainingDS);          % Train
 %% Segment Development Data and Create Dataset
 [segments, segFs, segTimes] = detectVoiced(devScriptPath);
 [segFeatures, segLabels, segLabelsExpanded] = getFeatures(segments,segFs,pointOhOne,...
-    'TIMES',segTimes,'ANNOTS',devAnnots,'NUMCEPS',numCeps,'CELL');
+    'TIMES',segTimes,'ANNOTS',devAnnots,'CELL');
 segDS = prtDataSetClass(cell2mat(segFeatures),segLabelsExpanded);
 segDS = segDS.setClassNames(getClassName(unique(segLabelsExpanded)));
 % segDS = segDS.retainFeatures(retainedFeatures);

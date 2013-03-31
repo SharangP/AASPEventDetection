@@ -51,12 +51,12 @@ if iscell(signals)
             loudness(signals{n},winTime*fs)'...
             SpectralFlux(signals{n},winTime*fs,winTime*fs)...
             SpectralEntropy(signals{n},winTime*fs,winTime*fs,1024,entropyBins)...
-            SpectralRollOff(signals{n},winTime*fs,winTime*fs,RolOffThresh,fs)'];
+            SpectralRollOff(signals{n},winTime*fs,winTime*fs,RolOffThresh,fs)'...
+            waveletFeatures(signals{n},winTime*fs)];
         
         LongFeatures = [mean(Features{n},1) std(Features{n},[],1)];
+        
         Features{n} = [Features{n} repmat(LongFeatures,size(Features{n},1),1)];
-
-%             Features{n} = [Features{n} repmat(mean(Features{n}(:,longTime),1),size(Features{n},1),1)];
     end
     
     if ~isempty(ANNOTS) && ~isempty(TIMES)
@@ -78,12 +78,11 @@ else
     loudness(signals,winTime*fs)'...
     SpectralFlux(signals,winTime*fs,winTime*fs)...
     SpectralEntropy(signals,winTime*fs,winTime*fs,1024,entropyBins)...
-    SpectralRollOff(signals,winTime*fs,winTime*fs,RolOffThresh,fs)'];
+    SpectralRollOff(signals,winTime*fs,winTime*fs,RolOffThresh,fs)'...
+    waveletFeatures(signals,winTime*fs)];
 
     LongFeatures = [mean(Features,1) std(Features,[],1)];
     Features = [Features repmat(LongFeatures,size(Features,1),1)];
-
-%     Features = [Features repmat(mean(Features(:,longTime),1),size(Features,1),1)];
 end
 
 end
