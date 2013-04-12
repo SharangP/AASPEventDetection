@@ -38,9 +38,9 @@ trainingDS = trainingDS.setClassNames(getClassName(1:16));
 
 %% Classifier Setup
 
-% classifier = prtClassMap;
+classifier = prtClassMap;
 % classifier.internalDecider = prtDecisionMap;        % Set the internal decider
-
+% classifier.rvs = prtRvGmm;
 mAry_classifier = prtClassBinaryToMaryOneVsAll;          % Create a classifier
 mAry_classifier.baseClassifier =    prtClassRvmFigueiredo ;
 classifier= prtPreProcZmuv  + mAry_classifier + prtDecisionMap;
@@ -100,14 +100,16 @@ devClasses = run(classifier, devDS);
 % xticklabel_rotate([],45);
 % align(figure(2),'center','center');
 
-figure(3)
+figure(1)
 prtScoreConfusionMatrix(segClasses.getX,segDS.getTargets);
 % title('Classifier Confusion Matrix With Segmenter');
 % xticklabel_rotate([],45);
 % align(figure(1),'center','center');
 
-figure(4)
+figure(2)
 prtScoreConfusionMatrix(devClasses.getX,devDS.getTargets);
 % title('Classifier Confusion Matrix Without Segmenter');
 % xticklabel_rotate([],45);
 % align(figure(2),'center','center');
+
+save('./resultsRVM.mat', 'segClasses', 'segDS', 'devClasses', 'devDS', 'classifier');
