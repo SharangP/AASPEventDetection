@@ -38,16 +38,12 @@ trainingDS = trainingDS.setClassNames(getClassName(1:16));
 
 %% Classifier Setup
 
-
 % classifier = prtClassMap;
 % classifier.internalDecider = prtDecisionMap;        % Set the internal decider
 
-% classifier = prtClassMatlabTreeBagger;
-
-% mAry_classifier = prtClassBinaryToMaryOneVsAll;          % Create a classifier
-% mAry_classifier.baseClassifier =    prtClassRvmFigueiredo ;
-% classifier= prtPreProcZmuv  + mAry_classifier + prtDecisionMap;
-% classifier = classifier.train(trainingDS);          % Train
+mAry_classifier = prtClassBinaryToMaryOneVsAll;          % Create a classifier
+mAry_classifier.baseClassifier =    prtClassRvmFigueiredo ;
+classifier= prtPreProcZmuv  + mAry_classifier + prtDecisionMap;
 
 classifier = classifier.train(trainingDS);
 
