@@ -11,7 +11,7 @@ function [ Features, Labels, LabelsExpanded ] = getFeatures( signals, fs, winTim
 %   [ Features, Labels ] = getFeatures( signals, Fs, winTime, varargin )
 % 
 %   The feature order is [melfccs, specCentroid, STE, loudness,
-%   SpectralFlux, SpectralEntropy, SpectralRollOff, meddis]
+%   SpectralFlux, SpectralEntropy, SpectralRollOff, wavelets]
 
 Features = []; Labels = [];
 TIMES = []; ANNOTS = [];
@@ -54,9 +54,9 @@ if iscell(signals)
             SpectralRollOff(signals{n},winTime*fs,winTime*fs,RolOffThresh,fs)'...
             waveletFeatures(signals{n},winTime*fs)];
         
-        LongFeatures = [mean(Features{n},1) std(Features{n},[],1)];
+%         LongFeatures = [mean(Features{n},1) std(Features{n},[],1)];
         
-        Features{n} = [Features{n} repmat(LongFeatures,size(Features{n},1),1)];
+%         Features{n} = [Features{n} repmat(LongFeatures,size(Features{n},1),1)];
     end
     
     if ~isempty(ANNOTS) && ~isempty(TIMES)
@@ -81,8 +81,8 @@ else
     SpectralRollOff(signals,winTime*fs,winTime*fs,RolOffThresh,fs)'...
     waveletFeatures(signals,winTime*fs)];
 
-    LongFeatures = [mean(Features,1) std(Features,[],1)];
-    Features = [Features repmat(LongFeatures,size(Features,1),1)];
+%     LongFeatures = [mean(Features,1) std(Features,[],1)];
+%     Features = [Features repmat(LongFeatures,size(Features,1),1)];
 end
 
 end
