@@ -3,6 +3,7 @@ function eventDetection(inputFile, outputFile )
 %   to detect event within the input .wav file. Detected
 %   events are written to the path of outputFile
 
+init;
 devScriptPath = inputFile;
 outputFilePath = outputFile;
 pointOhOne = 0.05;
@@ -37,11 +38,13 @@ fprintf('Done.\n\n')
 
 %% Segment Development Data and Create Dataset
 
+fprintf('Segmenting input ... ')
 [segments, segFs, segTimes] = detectVoiced(devScriptPath);
 [segFeatures, segLabels, segLabelsExpanded] = getFeatures(segments,segFs,pointOhOne,...
     'TIMES',segTimes,'ANNOTS',devAnnots,'CELL');
 segDS = prtDataSetClass(cell2mat(segFeatures),segLabelsExpanded);
 segDS = segDS.setClassNames(getClassName(unique(segLabelsExpanded)));
+fprintf('Done.\n\n')
 
 %% Create Perfectly Segmented Development Dataset
 
