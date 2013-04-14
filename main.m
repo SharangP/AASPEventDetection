@@ -16,10 +16,10 @@ init;
 globalVar;
 
 %% Get Features from Data
-% loadTrainingData
-% loadDevelopmentData
-load training.mat
-load development.mat
+loadTrainingData
+loadDevelopmentData
+% load training.mat
+% load development.mat
 
 % retainedFeatures = [1:40];
 
@@ -31,14 +31,14 @@ trainingDS = trainingDS.setClassNames(getClassName(1:16));
 % trainingDS = trainingDS.retainFeatures(retainedFeatures);
 
 %% Pre-process the Dataset
-%Preprocessor = prtPreProcPca('nComponents',27);   % try different preprocessing techniques
+%Preprocessor = prtPreProcPca('nCFomponents',27);   % try different preprocessing techniques
 %Preprocessor = Preprocessor.train(trainingDS);
 % trainingDS = Preprocessor.run(trainingDS);
 
 %% Classifier Setup
 
 classifier = prtClassBinaryToMaryOneVsAll;
-classifier.baseClassifier = prtClassKnnOptimize;
+classifier.baseClassifier = prtClassGlrt;
 classifier = classifier + prtDecisionMap;
 % classifier.internalDecider = prtDecision;        % Set the internal decider
 % classifier.rvs = prtRvGmm;
@@ -93,16 +93,16 @@ devPercentCorr = prtScorePercentCorrect(devClasses.getX,devDS.getTargets);
 % xticklabel_rotate([],45);
 % align(figure(2),'center','center');
 
-% figure(1)
-% prtScoreConfusionMatrix(segClasses.getX,segDS.getTargets);
+figure(1)
+prtScoreConfusionMatrix(segClasses.getX,segDS.getTargets);
 % title('Classifier Confusion Matrix With Segmenter');
-% xticklabel_rotate([],45);
-% align(figure(1),'center','center');
+xticklabel_rotate([],45);
+align(figure(1),'center','center');
 
-% figure(2)
-% prtScoreConfusionMatrix(devClasses.getX,devDS.getTargets);
+figure(2)
+prtScoreConfusionMatrix(devClasses.getX,devDS.getTargets);
 % title('Classifier Confusion Matrix Without Segmenter');
-% xticklabel_rotate([],45);
-% align(figure(2),'center','center');
+xticklabel_rotate([],45);
+align(figure(2),'center','center');
 
-save('./resultsKNNOptimize.mat', 'segClasses', 'segDS', 'devClasses', 'devDS', 'classifier');
+save('./resultsGlrtMAPAutoCorr.mat', 'segClasses', 'segDS', 'devClasses', 'devDS', 'classifier');

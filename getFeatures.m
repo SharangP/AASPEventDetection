@@ -54,9 +54,11 @@ if iscell(signals)
             SpectralRollOff(signals{n},winTime*fs,winTime*fs,RolOffThresh,fs)'...
             waveletFeatures(signals{n},winTime*fs)];
         
-%         LongFeatures = [mean(Features{n},1) std(Features{n},[],1)];
+        A = autocorr(signals{n});
+        longFs = Features{n}(:,numCeps+1:numCeps+6);
         
-%         Features{n} = [Features{n} repmat(LongFeatures,size(Features{n},1),1)];
+        LongFeatures = [mean(longFs,1) mean(A) median(A) std(A)];
+        Features{n} = [Features{n} repmat(LongFeatures,size(Features{n},1),1)];
     end
     
     if ~isempty(ANNOTS) && ~isempty(TIMES)
@@ -81,8 +83,11 @@ else
     SpectralRollOff(signals,winTime*fs,winTime*fs,RolOffThresh,fs)'...
     waveletFeatures(signals,winTime*fs)];
 
-%     LongFeatures = [mean(Features,1) std(Features,[],1)];
-%     Features = [Features repmat(LongFeatures,size(Features,1),1)];
+    A = autocorr(signals);
+    longFs = Features(:,numCeps+1:numCeps+6);
+    
+    LongFeatures = [mean(longFs,1) mean(A) median(A) std(A)];
+    Features = [Features repmat(LongFeatures,size(Features,1),1)];
 end
 
 end
