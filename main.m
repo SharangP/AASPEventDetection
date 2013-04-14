@@ -16,20 +16,21 @@ init;
 globalVar;
 
 %% Get Features from Data
-fprintf('START: feature extraction stage\n')
+
+fprintf('Extracting features ... ')
 % loadTrainingData
 % loadDevelopmentData
 load training.mat
 load development.mat
-% retainedFeatures = [1:40];
-fprintf('FINISH: feature extraction stage\n')
+fprintf('Done.\n')
+
 %% Create Training Dataset
-% Create the Training Dataset
-fprintf('Generating training dataset\n')
+
+fprintf('Generating training dataset ... ')
 trainingLabels2 = labelExpand(trainingLabels,trainingFeatures);
 trainingDS = prtDataSetClass(cell2mat(trainingFeatures),trainingLabels2);
 trainingDS = trainingDS.setClassNames(getClassName(1:16));
-% trainingDS = trainingDS.retainFeatures(retainedFeatures);
+fprintf('Done.\n')
 
 %% Pre-process the Dataset
 %Preprocessor = prtPreProcPca('nCFomponents',27);   % try different preprocessing techniques
@@ -46,7 +47,7 @@ classifier = classifier + prtDecisionMap;
 % mAry_classifier.baseClassifier =    prtClassRvmFigueiredo ;
 % classifier= prtPreProcZmuv  + mAry_classifier + prtDecisionMap;
 
-fprintf('Training classifier...')
+fprintf('Training classifier ... ')
 classifier = classifier.train(trainingDS);
 fprintf('Done\n')
 
@@ -71,39 +72,24 @@ devDS = devDS.setClassNames(getClassName(unique(devLabels)));
 % devDS = Preprocessor.run(devDS);
 
 %% Classify Data and Evaluate Results
+
+fprintf('Running classification ... ')
 segClasses = run(classifier, segDS);
 devClasses = run(classifier, devDS);
-
-% segClasses = consolidateClasses(segClasses,segFeatures);
-% devClasses = consolidateClasses(devClasses,devFeatures);
+fprintf('Done.\n')
 
 segPercentCorr = prtScorePercentCorrect(segClasses.getX,segDS.getTargets);
 devPercentCorr = prtScorePercentCorrect(devClasses.getX,devDS.getTargets);
 
-% segGuess = markovTraceBack(segClasses.getX,C,occ);
-% devGuess = markovTraceBack(devClasses.getX,C,occ);
-
-% figure(1)
-% prtScoreConfusionMatrix(segGuess,segDS.getTargets);
-% title('Classifier Confusion Matrix With Segmenter');
-% xticklabel_rotate([],45);
-% align(figure(1),'center','center');
-
-% figure(2)
-% prtScoreConfusionMatrix(devGuess,devDS.getTargets);
-% title('Classifier Confusion Matrix Without Segmenter');
-% xticklabel_rotate([],45);
-% align(figure(2),'center','center');
-
 figure(1)
 prtScoreConfusionMatrix(segClasses.getX,segDS.getTargets);
-% title('Classifier Confusion Matrix With Segmenter');
+title('Classifier Confusion Matrix With Segmenter');
 xticklabel_rotate([],45);
 align(figure(1),'center','center');
 
 figure(2)
 prtScoreConfusionMatrix(devClasses.getX,devDS.getTargets);
-% title('Classifier Confusion Matrix Without Segmenter');
+title('Classifier Confusion Matrix Without Segmenter');
 xticklabel_rotate([],45);
 align(figure(2),'center','center');
 
