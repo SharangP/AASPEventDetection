@@ -16,10 +16,10 @@ init;
 globalVar;
 
 %% Get Features from Data
-loadTrainingData
-loadDevelopmentData
-% load training.mat
-% load development.mat
+% loadTrainingData
+% loadDevelopmentData
+load training.mat
+load development.mat
 
 % numCeps = 13;
 retainedFeatures = [1:57];
