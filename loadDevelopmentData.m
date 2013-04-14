@@ -22,6 +22,12 @@ fclose(fid);
 [fullDev,fs] = wavread(devScriptPath);
 fullDev = mean(fullDev,2);
 
+% LPF the signal to eliminate some noise power
+Order = 5;
+fc = 32000;
+[B, A] = butter(Order,fc/fs);
+fullDev = filter(B,A,fullDev);
+
 % initialize things
 times = 0:pointOhOne:length(fullDev)/fs;
 devSignals = cell(length(devAnnots{1}),1);
@@ -38,6 +44,7 @@ for ii = 1 : length(devAnnots{1})
 end
 
 % get features of full signal and of the events only
+
 fullDevFeatures = getFeatures(fullDev,fs,pointOhOne);
 devFeatures = getFeatures(devSignals,fs,pointOhOne,'CELL'); % keep this in cell format for now
 
