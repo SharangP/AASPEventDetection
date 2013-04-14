@@ -14,12 +14,13 @@
 globalVar;
 
 %Read time tags for dev set
-fid = fopen('../Datasets/Office Live/events_OL_development/annotation1/script01_bdm.txt');
+fid = fopen(devAnnotPath);
 devAnnots = textscan(fid,'%f%f%s','delimiter','\t');
 fclose(fid);
 
-%Read dev dataset sound file
-[fullDev,fs] = wavread('../Datasets/Office Live/events_OL_development/bformat/script01-01.wav');
+%Read dev dataset sound file and average stereo chanels
+[fullDev,fs] = wavread(devScriptPath);
+fullDev = mean(fullDev,2);
 
 % initialize things
 times = 0:pointOhOne:length(fullDev)/fs;

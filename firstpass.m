@@ -29,10 +29,10 @@ numCeps = 13;
 % 'keyboard','keys','laughter','mouse','pageturn','pendrop','phone',
 % 'printer','speech','switch'}';
 % Items in each class often get confused with each other (they are similar)
-% Class1 = [1 4 5 6 7 10 15];
-% Class2 = [8 9 13 14 16];
-% % Items in class 3 are equally confused between class 1 and 2
-% Class3 = [2 3 11 12];
+Class1 = [1 4 5 6 7 10 15];
+Class2 = [8 9 13 14 16];
+% Items in class 3 are equally confused between class 1 and 2
+Class3 = [2 3 11 12];
 
 
 %% Create Training Dataset
@@ -40,38 +40,46 @@ numCeps = 13;
 trainingLabels2 = labelExpand(trainingLabels,trainingFeatures);
 
 % reassign class labels into one of three classes
-% trainingLabels2(ismember(trainingLabels2,Class1)) = 17;
-% trainingLabels2(ismember(trainingLabels2,Class2)) = 18;
-% trainingLabels2(ismember(trainingLabels2,Class3)) = 19;
-% trainingLabels2 = trainingLabels2 - 16;
+trainingLabels2(ismember(trainingLabels2,Class1)) = 17;
+trainingLabels2(ismember(trainingLabels2,Class2)) = 18;
+trainingLabels2(ismember(trainingLabels2,Class3)) = 19;
+trainingLabels2 = trainingLabels2 - 16;
 
 trainingDS = prtDataSetClass(cell2mat(trainingFeatures),trainingLabels2);
-trainingDS = trainingDS.setClassNames(getClassName(1:16));
-% trainingDS = trainingDS.retainFeatures(retainedFeatures);
-
-%% Pre-process the Dataset
-% Preprocessor = prtPreProcPls;   % try different preprocessing techniques
-% Preprocessor = Preprocessor.train(trainingDS);
-% trainingDataSetProcessed = Preprocessor.run(trainingDS);
+% trainingDS = trainingDS.setClassNames(getClassName(1:16));
+% trainingDS = trainingDS.retainFeatures([1:45]);
 
 %% Classifier Setup
-classifier = prtClassKnn;          % Create a classifier
-% classifier = prtClassBinaryToMaryOneVsAll;          % Create a classifier
-% classifier.baseClassifier = prtClassGlrt;           % Set the binary classifier
-% classifier.internalDecider = prtDecisionMap;        % Set the internal decider
-classifier = classifier.train(trainingDS);          % Train
+classifier = prtClassKnn + prtDecisionMap;          % Create a classifier
+% trainingL = classifier.kfolds(trainingDS,10);          % Train
+% [~,trainingClasses] = max(trainingL.getObservations,[],2);
+% figure(3)
+% prtScoreConfusionMatrix(trainingClasses,trainingDS.getTargets);
 
+classifier = classifier.train(trainingDS);
 
 %% Segment Development Data and Create Dataset
 [segments, segFs, segTimes] = detectVoiced(devScriptPath);
 [segFeatures, segLabels, segLabelsExpanded] = getFeatures(segments,segFs,pointOhOne,...
     'TIMES',segTimes,'ANNOTS',devAnnots,'CELL');
+
+segLabelsExpanded(ismember(segLabelsExpanded,Class1)) = 17;
+segLabelsExpanded(ismember(segLabelsExpanded,Class2)) = 18;
+segLabelsExpanded(ismember(segLabelsExpanded,Class3)) = 19;
+segLabelsExpanded(segLabelsExpanded > 0) = segLabelsExpanded(segLabelsExpanded > 0) - 16;
+
 segDS = prtDataSetClass(cell2mat(segFeatures),segLabelsExpanded);
 segDS = segDS.setClassNames(getClassName(unique(segLabelsExpanded)));
 % segDS = segDS.retainFeatures(retainedFeatures);
 
 %% Create Perfectly Segmented Development Dataset
 devLabels2 = labelExpand(devLabels,devFeatures);
+
+devLabels2(ismember(devLabels2,Class1)) = 17;
+devLabels2(ismember(devLabels2,Class2)) = 18;
+devLabels2(ismember(devLabels2,Class3)) = 19;
+devLabels2(devLabels2 > 0) = devLabels2(devLabels2 > 0) - 16;
+
 devDS = prtDataSetClass(cell2mat(devFeatures),devLabels2);
 devDS = devDS.setClassNames(getClassName(unique(devLabels)));
 % devDS = devDS.retainFeatures(retainedFeatures);
@@ -79,27 +87,21 @@ devDS = devDS.setClassNames(getClassName(unique(devLabels)));
 %% Classify Data and Evaluate Results
 segClasses = run(classifier, segDS);
 devClasses = run(classifier, devDS);
-trainingClasses = run(classifier,trainingDS);
 
-[~, segL] = max(segClasses.getX,[],2);
-[~, devL] = max(devClasses.getX,[],2);
-[~, trainingL] = max(trainingClasses.getX,[],2);
+% [~, segL] = max(segClasses.getX,[],2);
+% [~, devL] = max(devClasses.getX,[],2);
 
-segPercentCorr = prtScorePercentCorrect(segL,segDS.getTargets)
-devPercentCorr = prtScorePercentCorrect(devL,devDS.getTargets)
-trainingPercentCorr = prtScorePercentCorrect(trainingL,trainingDS.getTargets)
+segPercentCorr = prtScorePercentCorrect(segClasses.getTargets,segDS.getTargets)
+devPercentCorr = prtScorePercentCorrect(devClasses.getTargets,devDS.getTargets)
 
 figure(1)
-prtScoreConfusionMatrix(segL,segDS.getTargets);
-title('Classifier Confusion Matrix With Segmenter');
+prtScoreConfusionMatrix(segClasses,segDS);
+% title('Classifier Confusion Matrix With Segmenter');
 xticklabel_rotate([],45);
 align(figure(1),'center','center');
 
 figure(2)
-prtScoreConfusionMatrix(devL,devDS.getTargets);
-title('Classifier Confusion Matrix Without Segmenter');
+prtScoreConfusionMatrix(devClasses,devDS);
+% title('Classifier Confusion Matrix Without Segmenter');
 xticklabel_rotate([],45);
 align(figure(2),'center','center');
-
-figure(3)
-prtScoreConfusionMatrix(trainingL,trainingDS.getTargets);
