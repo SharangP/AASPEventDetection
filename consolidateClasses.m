@@ -3,15 +3,16 @@ function [ consolidatedClasses ] = consolidateClasses( classes, featureCell )
 %   Detailed explanation goes here
 
 ind = 1;
-classesExpand = classes.getObservations;
-newClasses = zeros(length(classesExpand),1);
+classesExpand = classes.getX;
+newClasses = zeros(length(featureCell),1);
 for m = 1:length(featureCell)
     eventStart = ind;
     eventEnd = ind+length(featureCell{m});
-    newClasses(eventStart:eventEnd) = mode(classesExpand(eventStart:eventEnd));
+    newClasses(m) = mode(classesExpand(eventStart:eventEnd));
     ind = ind + 1;
 end
-consolidatedClasses = classes.setObservations(newClasses);
+
+consolidatedClasses = getClassName(newClasses);
 
 end
 

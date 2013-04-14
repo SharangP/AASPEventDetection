@@ -94,3 +94,6 @@ xticklabel_rotate([],45);
 align(figure(2),'center','center');
 
 save('./resultsGlrtMAPAutoCorr.mat', 'segClasses', 'segDS', 'devClasses', 'devDS', 'classifier');
+
+classes = determineClasses(segClasses.getX,segTimes,pointOhOne);
+writeOutput(outputFilePath, segTimes, classes);
