@@ -16,19 +16,11 @@ init;
 globalVar;
 
 %% Get Features from Data
-<<<<<<< HEAD
-loadTrainingData
-loadDevelopmentData
-% load training.mat
-% load development.mat
-=======
 fprintf('START: feature extraction stage\n')
 % loadTrainingData
 % loadDevelopmentData
 load training.mat
 load development.mat
->>>>>>> 1515ccd36f55c6e3ad330499ee8d8a08d30c0e02
-
 % retainedFeatures = [1:40];
 fprintf('FINISH: feature extraction stage\n')
 %% Create Training Dataset
