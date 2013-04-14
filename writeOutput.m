@@ -5,9 +5,7 @@ function writeOutput( outputFile )
 fid = fopen(outputFile,'w');
 
 if fid ~= -1
-   
-    
-    
+    %write output
 end
 
 end

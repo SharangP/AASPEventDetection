@@ -4,8 +4,8 @@ function eventDetection(inputFile, outputFile )
 %   events are written to the path of outputFile
 
 devScriptPath = inputFile;
-
-
+main;
+writeOutput(outputFile);
 
 end
 

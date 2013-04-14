@@ -16,15 +16,17 @@ init;
 globalVar;
 
 %% Get Features from Data
+fprintf('START: feature extraction stage\n')
 % loadTrainingData
 % loadDevelopmentData
 load training.mat
 load development.mat
 
 % retainedFeatures = [1:40];
-
+fprintf('FINISH: feature extraction stage\n')
 %% Create Training Dataset
 % Create the Training Dataset
+fprintf('Generating training dataset\n')
 trainingLabels2 = labelExpand(trainingLabels,trainingFeatures);
 trainingDS = prtDataSetClass(cell2mat(trainingFeatures),trainingLabels2);
 trainingDS = trainingDS.setClassNames(getClassName(1:16));
@@ -36,7 +38,6 @@ trainingDS = trainingDS.setClassNames(getClassName(1:16));
 % trainingDS = Preprocessor.run(trainingDS);
 
 %% Classifier Setup
-
 classifier = prtClassBinaryToMaryOneVsAll;
 classifier.baseClassifier = prtClassKnnOptimize;
 classifier = classifier + prtDecisionMap;
@@ -46,7 +47,9 @@ classifier = classifier + prtDecisionMap;
 % mAry_classifier.baseClassifier =    prtClassRvmFigueiredo ;
 % classifier= prtPreProcZmuv  + mAry_classifier + prtDecisionMap;
 
+fprintf('Training classifier...')
 classifier = classifier.train(trainingDS);
+fprintf('Done\n')
 
 %% Segment Development Data and Create Dataset
 [segments, segFs, segTimes] = detectVoiced(devScriptPath);
