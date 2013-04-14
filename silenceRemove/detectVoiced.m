@@ -54,7 +54,7 @@ end
 
 % Window length and step (in seconds):
 win = 0.050;
-step = 0.050;
+step = 0.040;
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%
 %  THRESHOLD ESTIMATION

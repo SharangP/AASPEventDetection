@@ -1,37 +1,16 @@
+function[sTime, numEvents] = segTestFun(thresHoldW, winTime, stepTime);
+%
+% function [numEvents] = segmenterTest(threshold, winTime,stepTime)
+% returns the number of events by determined by the segmenter
+%
+
 wavFileName = 'script01.wav';
 load fullDevFiltered
 x = fullDev;
-t = 1;
-%
-% function [segments, fs] = detectVoiced(wavFileName)
-%
-% Theodoros Giannakopoulos
-% http://www.di.uoa.gr/~tyiannak
-%
-% (c) 2010
-%
-% This function implements a simple voice detector. The algorithm is
-% described in more detail, in the readme.pdf file
-%
-% ARGUMENTS:
-%  - wavFileName: the path of the wav file to be analyzed
-%  - t: if provided, the detected voiced segments are played and some
-%  intermediate results are also ploted
-%
-% RETURNS:
-%  - segments: a cell array of M elements. M is the total number of
-%  detected segments. Each element of the cell array is a vector of audio
-%  samples of the respective segment.
-%  - fs: the sampling frequency of the audio signal
-%
-% EXECUTION EXAMPLE:
-%
-% [segments, fs] = detectVoiced('example.wav',1);
+
 %
 useWavFile = 0;
-plotStuff =0;
 if useWavFile ==1
-
     % Check if the given wav file exists:
     fp = fopen(wavFileName, 'rb');
     if (fp<0)
@@ -57,14 +36,14 @@ if useWavFile ==1
 end
 x=x;
 % Window length and step (in seconds):
-win = 0.10;
-step = 0.10;
+win = winTime;
+step = stepTime;
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%
 %  THRESHOLD ESTIMATION
 %%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Weight = 5; % used in the threshold estimation method
+Weight = thresHoldW; % used in the threshold estimation method
 
 % Compute short-time energy and spectral centroid of the signal:
 Eor = ShortTimeEnergy(x, win*fs, step*fs)'; % i added this transpose to make it work...
@@ -101,17 +80,6 @@ end
 Flags1 = (E>=T_E);
 Flags2 = (C>=T_C);
 flags = Flags1' & Flags2;
-
-if plotStuff ==1
-        clf;
-        subplot(3,1,1); plot(Eor, 'g'); hold on; plot(E, 'c'); legend({'Short time energy (original)', 'Short time energy (filtered)'});
-        L = line([0 length(E)],[T_E T_E]); set(L,'Color',[0 0 0]); set(L, 'LineWidth', 2);
-        axis([0 length(Eor) min(Eor) max(Eor)]);
-
-        subplot(3,1,2); plot(Cor, 'g'); hold on; plot(C, 'c'); legend({'Spectral Centroid (original)', 'Spectral Centroid (filtered)'});
-        L = line([0 length(C)],[T_C T_C]); set(L,'Color',[0 0 0]); set(L, 'LineWidth', 2);
-        axis([0 length(Cor) min(Cor) max(Cor)]);
-end
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %  SPEECH SEGMENTS DETECTION
@@ -171,47 +139,8 @@ end
 
 time = 0:1/fs:(length(x)-1) / fs;
 sTime = time(Limits);
-size(sTime)
+numEvents = length(sTime);
 
-if plotStuff == 1
-    subplot(3,1,3);
-    % Plot results and play segments:
-    time = 0:1/fs:(length(x)-1) / fs;
-    for (i=1:length(segments))
-        hold off;
-        P1 = plot(time, x); set(P1, 'Color', [0.7 0.7 0.7]);
-        hold on;
-        for (j=1:length(segments))
-            if (i~=j)
-                timeTemp = Limits(j,1)/fs:1/fs:Limits(j,2)/fs;
-                P = plot(timeTemp, segments{j});
-                set(P, 'Color', [0.4 0.1 0.1]);
-            end
-        end
-        timeTemp = Limits(i,1)/fs:1/fs:Limits(i,2)/fs;
-        P = plot(timeTemp, segments{i});
-        set(P, 'Color', [0.9 0.0 0.0]);
-        axis([0 time(end) min(x) max(x)]);
-        %         sound(segments{i}, fs);
-        %         clc;
-        %         fprintf('Playing segment %d of %d. Press any key to continue...', i, length(segments));
-        %         pause
-    end
-    %     clc
-    hold off;
-    P1 = plot(time, x); set(P1, 'Color', [0.7 0.7 0.7]);
-    hold on;
-
-        for (i=1:length(segments))
-            for (j=1:length(segments))
-                if (i~=j)
-                    timeTemp = Limits(j,1)/fs:1/fs:Limits(j,2)/fs;
-                    P = plot(timeTemp, segments{j});
-                    set(P, 'Color', [0.4 0.1 0.1]);
-                end
-            end
-            axis([0 time(end) min(x) max(x)]);
-        end
 end
 
 
