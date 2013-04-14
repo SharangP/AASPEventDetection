@@ -16,7 +16,4 @@ to the .txt file to which the output should be written.
 This submission is not paralellized or multithreaded. It utilizes only one
 core. 
 
-This submission uses an open sources toolbox called Pattern Recognition 
-Toolbox (PRT) for classification. PRT has been included with this submission
-and will be added to the MATLAB path when the eventDetection function is
-called.
+This submission uses an open sources toolkit called Pattern Recognition
