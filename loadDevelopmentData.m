@@ -24,8 +24,10 @@ fullDev = mean(fullDev,2);
 
 % LPF the signal to eliminate some noise power
 Order = 5;
+Ripple = 20;
 fc = 32000;
-[B, A] = butter(Order,fc/fs);
+% [B, A] = butter(Order,fc/fs, 'low');
+[B, A] = cheby2(Order,Ripple, fc/fs,'low');
 fullDev = filter(B,A,fullDev);
 
 % initialize things

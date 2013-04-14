@@ -1,4 +1,6 @@
-wavFileName = 'script01.wav';
+% wavFileName = 'script01.wav';
+load fullDevFiltered
+x = fullDev;
 t = 1;
 %
 % function [segments, fs] = detectVoiced(wavFileName)
@@ -30,27 +32,27 @@ t = 1;
 
 
 % Check if the given wav file exists:
-fp = fopen(wavFileName, 'rb');
-if (fp<0)
-    fprintf('The file %s has not been found!\n', wavFileName);
-    return;
-end
-fclose(fp);
+% fp = fopen(wavFileName, 'rb');
+% if (fp<0)
+%     fprintf('The file %s has not been found!\n', wavFileName);
+%     return;
+% end
+% fclose(fp);
 
 % Check if .wav extension exists:
-if  (strcmpi(wavFileName(end-3:end),'.wav'))
-    % read the wav file name:
-    [x,fs] = wavread(wavFileName);
-else
-    fprintf('Unknown file type!\n');
-    return;
-end
+% if  (strcmpi(wavFileName(end-3:end),'.wav'))
+%     % read the wav file name:
+%     [x,fs] = wavread(wavFileName);
+% else
+%     fprintf('Unknown file type!\n');
+%     return;
+% end
 
 
 % Convert mono to stereo
-if (size(x, 2)==2)
-    x = mean(x')';
-end
+% if (size(x, 2)==2)
+%     x = mean(x')';
+% end
 
 % Window length and step (in seconds):
 win = 0.050;
@@ -96,7 +98,7 @@ end
 % Thresholding:
 Flags1 = (E>=T_E);
 Flags2 = (C>=T_C);
-flags = Flags1 & Flags2;
+flags = Flags1' & Flags2;
 
 if (nargin==2) % plot results:
     clf;
@@ -166,41 +168,48 @@ for (i=1:size(Limits,1))
     segments{end+1} = x(Limits(i,1):Limits(i,2));
 end
 
-subplot(3,1,3);
-% Plot results and play segments:
-time = 0:1/fs:(length(x)-1) / fs;
-for (i=1:length(segments))
+
+
+plotStuff =0;
+if plotStuff == 1
+    subplot(3,1,3);
+    % Plot results and play segments:
+    time = 0:1/fs:(length(x)-1) / fs;
+    for (i=1:length(segments))
+        hold off;
+        P1 = plot(time, x); set(P1, 'Color', [0.7 0.7 0.7]);
+        hold on;
+        for (j=1:length(segments))
+            if (i~=j)
+                timeTemp = Limits(j,1)/fs:1/fs:Limits(j,2)/fs;
+                P = plot(timeTemp, segments{j});
+                set(P, 'Color', [0.4 0.1 0.1]);
+            end
+        end
+        timeTemp = Limits(i,1)/fs:1/fs:Limits(i,2)/fs;
+        P = plot(timeTemp, segments{i});
+        set(P, 'Color', [0.9 0.0 0.0]);
+        axis([0 time(end) min(x) max(x)]);
+        %         sound(segments{i}, fs);
+        %         clc;
+        %         fprintf('Playing segment %d of %d. Press any key to continue...', i, length(segments));
+        %         pause
+    end
+    %     clc
     hold off;
     P1 = plot(time, x); set(P1, 'Color', [0.7 0.7 0.7]);
     hold on;
-    for (j=1:length(segments))
-        if (i~=j)
-            timeTemp = Limits(j,1)/fs:1/fs:Limits(j,2)/fs;
-            P = plot(timeTemp, segments{j});
-            set(P, 'Color', [0.4 0.1 0.1]);
+
+        for (i=1:length(segments))
+            for (j=1:length(segments))
+                if (i~=j)
+                    timeTemp = Limits(j,1)/fs:1/fs:Limits(j,2)/fs;
+                    P = plot(timeTemp, segments{j});
+                    set(P, 'Color', [0.4 0.1 0.1]);
+                end
+            end
+            axis([0 time(end) min(x) max(x)]);
         end
-    end
-    timeTemp = Limits(i,1)/fs:1/fs:Limits(i,2)/fs;
-    P = plot(timeTemp, segments{i});
-    set(P, 'Color', [0.9 0.0 0.0]);
-    axis([0 time(end) min(x) max(x)]);
-    %         sound(segments{i}, fs);
-    %         clc;
-    %         fprintf('Playing segment %d of %d. Press any key to continue...', i, length(segments));
-    %         pause
 end
-%     clc
-hold off;
-P1 = plot(time, x); set(P1, 'Color', [0.7 0.7 0.7]);
-hold on;
-for (i=1:length(segments))
-    for (j=1:length(segments))
-        if (i~=j)
-            timeTemp = Limits(j,1)/fs:1/fs:Limits(j,2)/fs;
-            P = plot(timeTemp, segments{j});
-            set(P, 'Color', [0.4 0.1 0.1]);
-        end
-    end
-    axis([0 time(end) min(x) max(x)]);
-end
+
 
