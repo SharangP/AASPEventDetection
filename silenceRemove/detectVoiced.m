@@ -52,6 +52,14 @@ if (size(x, 2)==2)
 	x = mean(x')';
 end
 
+% LPF the signal to eliminate some noise power
+Order = 5;
+Ripple = 20;
+fc = 32000;
+[B, A] = cheby2(Order,Ripple, fc/fs,'low');
+x = filter(B,A,x);
+
+
 % Window length and step (in seconds):
 win = 0.050;
 step = 0.040;

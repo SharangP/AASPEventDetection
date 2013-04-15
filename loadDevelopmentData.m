@@ -26,7 +26,6 @@ fullDev = mean(fullDev,2);
 Order = 5;
 Ripple = 20;
 fc = 32000;
-% [B, A] = butter(Order,fc/fs, 'low');
 [B, A] = cheby2(Order,Ripple, fc/fs,'low');
 fullDev = filter(B,A,fullDev);
 
