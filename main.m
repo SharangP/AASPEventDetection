@@ -82,14 +82,14 @@ segPercentCorr = prtScorePercentCorrect(segClasses.getX,segDS.getTargets);
 devPercentCorr = prtScorePercentCorrect(devClasses.getX,devDS.getTargets);
 
 figure(1)
-prtScoreConfusionMatrix(segClasses.getX,segDS.getTargets);
-title('Classifier Confusion Matrix With Segmenter');
+prtScoreConfusionMatrix(segClasses);
 xticklabel_rotate([],45);
+title(strcat('Percent Correct: ',num2str(segPercentCorr*100),'%'));
 align(figure(1),'center','center');
 
 figure(2)
-prtScoreConfusionMatrix(devClasses.getX,devDS.getTargets);
-title('Classifier Confusion Matrix Without Segmenter');
+prtScoreConfusionMatrix(devClasses);
+title(strcat('Percent Correct: ',num2str(devPercentCorr*100),'%'));
 xticklabel_rotate([],45);
 align(figure(2),'center','center');
 

@@ -18,4 +18,3 @@ for ii = 1:length(eventLengths)
 end
 
 end
-
