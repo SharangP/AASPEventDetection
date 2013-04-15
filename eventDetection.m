@@ -4,17 +4,12 @@ function eventDetection(inputFile, outputFile )
 %   events are written to the path of outputFile
 
 init;
-devScriptPath = inputFile;
-outputFilePath = outputFile;
+inputFile = inputFile;
 pointOhOne = 0.05;
-% devScriptPath = '../Datasets/Office Live/events_OL_development/stereo/script01.wav';
-devAnnotPath = '../Datasets/Office Live/events_OL_development/annotation2/script01_sid.txt';
 
 %% Get Features from Data
 
-fprintf('Extracting features ... ')
-% loadTrainingData
-% loadDevelopmentData
+fprintf('Loading training features ... ')
 load training.mat
 load development.mat
 fprintf('Done.\n\n')
@@ -38,51 +33,34 @@ fprintf('Done.\n\n')
 
 %% Segment Development Data and Create Dataset
 
-fprintf('Segmenting input ... ')
-[segments, segFs, segTimes] = detectVoiced(devScriptPath);
-[segFeatures, segLabels, segLabelsExpanded] = getFeatures(segments,segFs,pointOhOne,...
+fprintf('Segmenting input and extracting features ... ')
+[segments, segFs, segTimes] = detectVoiced(inputFile);
+[segFeatures, ~, segLabelsExpanded] = getFeatures(segments,segFs,pointOhOne,...
     'TIMES',segTimes,'ANNOTS',devAnnots,'CELL');
 segDS = prtDataSetClass(cell2mat(segFeatures),segLabelsExpanded);
-segDS = segDS.setClassNames(getClassName(unique(segLabelsExpanded)));
 fprintf('Done.\n\n')
 
-%% Create Perfectly Segmented Development Dataset
-
-devLabels2 = labelExpand(devLabels,devFeatures);
-devDS = prtDataSetClass(cell2mat(devFeatures),devLabels2);
-devDS = devDS.setClassNames(getClassName(unique(devLabels)));
-
-%% Classify Data and Evaluate Results
+%% Classify Data and Write Output
 
 fprintf('Running frame by frame classification ... ')
 segClasses = run(classifier, segDS);
-devClasses = run(classifier, devDS);
 fprintf('Done.\n\n')
 
-segPercentCorr = prtScorePercentCorrect(segClasses.getX,segDS.getTargets);
-devPercentCorr = prtScorePercentCorrect(devClasses.getX,devDS.getTargets);
-fprintf('segPercentCorr: %f\n',segPercentCorr);
-fprintf('devPercentCorr: %f\n\n',devPercentCorr);
+segPercentCorr = prtScorePercentCorrect(segClasses);
+fprintf('percent correct: %f\n',segPercentCorr)
 
-% figure(1)
-% prtScoreConfusionMatrix(segClasses.getX,segDS.getTargets);
-% title('Classifier Confusion Matrix With Segmenter');
-% xticklabel_rotate([],45);
-% align(figure(1),'center','center');
-% 
-% figure(2)
-% prtScoreConfusionMatrix(devClasses.getX,devDS.getTargets);
-% title('Classifier Confusion Matrix Without Segmenter');
-% xticklabel_rotate([],45);
-% align(figure(2),'center','center');
+figure(1)
+prtScoreConfusionMatrix(segClasses.getX,segDS.getTargets);
+title('Classifier Confusion Matrix With Segmenter');
+xticklabel_rotate([],45);
+align(figure(1),'center','center');
 
 fprintf('Running event classification ... ')
 classes = determineClasses(segClasses.getX,segTimes,pointOhOne);
-% classes = consolidateClasses(segClasses, segFeatures);
 fprintf('Done.\n\n')
 
 fprintf('Writing output ... ')
-writeOutput(outputFilePath, segTimes, classes);
+writeOutput(outputFile, segTimes, classes);
 fprintf('Done.\n\n')
 
 end
