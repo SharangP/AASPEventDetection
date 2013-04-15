@@ -1,19 +1,20 @@
-<<<<<<< HEAD
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.12.14)  15 APR 2013 00:13
-=======
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/W32TeX) (format=pdflatex 2012.12.21)  15 APR 2013 00:02
->>>>>>> 0c711cb0f9f96dcf081b1b2f654c8f8c36160ae2
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.12.14)  15 APR 2013 00:31
 entering extended mode
- restricted \write18 enabled.
  %&-line parsing enabled.
 **aasp-challenge.tex
 (./aasp-challenge.tex
-LaTeX2e <2011/06/27>
-Babel <v3.8m> and hyphenation patterns for english, dumylang, nohyphenation, uk
-english, usenglishmax, loaded.
-(d:/Program Files/TexLive/texmf-dist/tex/latex/base/article.cls
+LaTeX2e <2009/09/24>
+Babel <v3.8l> and hyphenation patterns for english, usenglishmax, dumylang, noh
+yphenation, farsi, arabic, croatian, bulgarian, ukrainian, russian, czech, slov
+ak, danish, dutch, finnish, french, basque, ngerman, german, german-x-2009-06-1
+9, ngerman-x-2009-06-19, ibycus, monogreek, greek, ancientgreek, hungarian, san
+skrit, italian, latin, latvian, lithuanian, mongolian2a, mongolian, bokmal, nyn
+orsk, romanian, irish, coptic, serbian, turkish, welsh, esperanto, uppersorbian
+, estonian, indonesian, interlingua, icelandic, kurmanji, slovenian, polish, po
+rtuguese, spanish, galician, catalan, swedish, ukenglish, pinyin, loaded.
+(/usr/share/texmf-texlive/tex/latex/base/article.cls
 Document Class: article 2007/10/19 v1.4h Standard LaTeX document class
-(d:/Program Files/TexLive/texmf-dist/tex/latex/base/size10.clo
+(/usr/share/texmf-texlive/tex/latex/base/size10.clo
 File: size10.clo 2007/10/19 v1.4h Standard LaTeX file (size option)
 )
 \c@part=\count79
@@ -34,24 +35,24 @@ File: size10.clo 2007/10/19 v1.4h Standard LaTeX file (size option)
 \plainfootrulewidth=\dimen106
 \headwidth=\dimen107
 )
-(d:/Program Files/TexLive/texmf-dist/tex/latex/amsmath/amsmath.sty
+(/usr/share/texmf-texlive/tex/latex/amsmath/amsmath.sty
 Package: amsmath 2000/07/18 v2.13 AMS math features
 \@mathmargin=\skip43
 
 For additional information on amsmath, use the `?' option.
-(d:/Program Files/TexLive/texmf-dist/tex/latex/amsmath/amstext.sty
+(/usr/share/texmf-texlive/tex/latex/amsmath/amstext.sty
 Package: amstext 2000/06/29 v2.01
 
-(d:/Program Files/TexLive/texmf-dist/tex/latex/amsmath/amsgen.sty
+(/usr/share/texmf-texlive/tex/latex/amsmath/amsgen.sty
 File: amsgen.sty 1999/11/30 v2.0
 \@emptytoks=\toks14
 \ex@=\dimen108
 ))
-(d:/Program Files/TexLive/texmf-dist/tex/latex/amsmath/amsbsy.sty
+(/usr/share/texmf-texlive/tex/latex/amsmath/amsbsy.sty
 Package: amsbsy 1999/11/29 v1.2d
 \pmbraise@=\dimen109
 )
-(d:/Program Files/TexLive/texmf-dist/tex/latex/amsmath/amsopn.sty
+(/usr/share/texmf-texlive/tex/latex/amsmath/amsopn.sty
 Package: amsopn 1999/12/14 v2.01 operator names
 )
 \inf@bad=\count87
@@ -92,45 +93,37 @@ LaTeX Font Info:    Redeclaring font encoding OMS on input line 568.
 LaTeX Info: Redefining \[ on input line 2666.
 LaTeX Info: Redefining \] on input line 2667.
 )
-(d:/Program Files/TexLive/texmf-dist/tex/latex/graphics/graphicx.sty
+(/usr/share/texmf-texlive/tex/latex/graphics/graphicx.sty
 Package: graphicx 1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
 
-(d:/Program Files/TexLive/texmf-dist/tex/latex/graphics/keyval.sty
+(/usr/share/texmf-texlive/tex/latex/graphics/keyval.sty
 Package: keyval 1999/03/16 v1.13 key=value parser (DPC)
 \KV@toks@=\toks19
 )
-(d:/Program Files/TexLive/texmf-dist/tex/latex/graphics/graphics.sty
+(/usr/share/texmf-texlive/tex/latex/graphics/graphics.sty
 Package: graphics 2009/02/05 v1.0o Standard LaTeX Graphics (DPC,SPQR)
 
-(d:/Program Files/TexLive/texmf-dist/tex/latex/graphics/trig.sty
+(/usr/share/texmf-texlive/tex/latex/graphics/trig.sty
 Package: trig 1999/03/16 v1.09 sin cos tan (DPC)
 )
-(d:/Program Files/TexLive/texmf-dist/tex/latex/latexconfig/graphics.cfg
-File: graphics.cfg 2010/04/23 v1.9 graphics configuration of TeX Live
+(/etc/texmf/tex/latex/config/graphics.cfg
+File: graphics.cfg 2009/08/28 v1.8 graphics configuration of TeX Live
 )
 Package graphics Info: Driver file: pdftex.def on input line 91.
 
-(d:/Program Files/TexLive/texmf-dist/tex/latex/pdftex-def/pdftex.def
-File: pdftex.def 2011/05/27 v0.06d Graphics/color for pdfTeX
-
-(d:/Program Files/TexLive/texmf-dist/tex/generic/oberdiek/infwarerr.sty
-Package: infwarerr 2010/04/08 v1.3 Providing info/warning/error messages (HO)
-)
-(d:/Program Files/TexLive/texmf-dist/tex/generic/oberdiek/ltxcmds.sty
-Package: ltxcmds 2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
-)
+(/usr/share/texmf-texlive/tex/latex/pdftex-def/pdftex.def
+File: pdftex.def 2010/03/12 v0.04p Graphics/color for pdfTeX
 \Gread@gobject=\count99
 ))
 \Gin@req@height=\dimen117
 \Gin@req@width=\dimen118
-)
-(./url.sty
+) (./url.sty
 \Urlmuskip=\muskip11
 Package: url 2006/04/12  ver 3.3  Verb mode for urls, etc.
-) (d:/Program Files/TexLive/texmf-dist/tex/latex/psnfss/times.sty
+)
+(/usr/share/texmf-texlive/tex/latex/psnfss/times.sty
 Package: times 2005/04/12 PSNFSS-v9.2a (SPQR) 
 )
-<<<<<<< HEAD
 (/usr/share/texmf-texlive/tex/latex/oberdiek/epstopdf.sty
 Package: epstopdf 2009/10/17 v2.4 Conversion with epstopdf on the fly (HO)
 
@@ -188,9 +181,6 @@ LaTeX Info: Redefining \cite on input line 285.
 LaTeX Info: Redefining \nocite on input line 356.
 Package: cite 2009/08/29  v 5.2
 ) (./aasp-challenge.aux)
-=======
-(./aasp-challenge.aux)
->>>>>>> 0c711cb0f9f96dcf081b1b2f654c8f8c36160ae2
 \openout1 = `aasp-challenge.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 48.
@@ -207,10 +197,10 @@ LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 48.
 LaTeX Font Info:    ... okay on input line 48.
 LaTeX Font Info:    Try loading font information for OT1+ptm on input line 48.
 
-(d:/Program Files/TexLive/texmf-dist/tex/latex/psnfss/ot1ptm.fd
+(/usr/share/texmf-texlive/tex/latex/psnfss/ot1ptm.fd
 File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
 )
-(d:/Program Files/TexLive/texmf-dist/tex/context/base/supp-pdf.mkii
+(/usr/share/texmf-texlive/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count100
 \scratchdimen=\dimen119
@@ -221,150 +211,62 @@ File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
 \MPscratchCnt=\count103
 \MPscratchDim=\dimen120
 \MPnumerator=\count104
-\makeMPintoPDFobject=\count105
 \everyMPtoPDFconversion=\toks21
-) (d:/Program Files/TexLive/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
-Package: pdftexcmds 2011/11/29 v0.20 Utility functions of pdfTeX for LuaTeX (HO
 )
-
-(d:/Program Files/TexLive/texmf-dist/tex/generic/oberdiek/ifluatex.sty
-Package: ifluatex 2010/03/01 v1.3 Provides the ifluatex switch (HO)
-Package ifluatex Info: LuaTeX not detected.
-)
-(d:/Program Files/TexLive/texmf-dist/tex/generic/oberdiek/ifpdf.sty
-Package: ifpdf 2011/01/30 v2.3 Provides the ifpdf switch (HO)
-Package ifpdf Info: pdfTeX in PDF mode is detected.
-)
-Package pdftexcmds Info: LuaTeX not detected.
-Package pdftexcmds Info: \pdf@primitive is available.
-Package pdftexcmds Info: \pdf@ifprimitive is available.
-Package pdftexcmds Info: \pdfdraftmode found.
-)
-(d:/Program Files/TexLive/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
-Package: epstopdf-base 2010/02/09 v2.5 Base part for package epstopdf
-
-(d:/Program Files/TexLive/texmf-dist/tex/latex/oberdiek/grfext.sty
-Package: grfext 2010/08/19 v1.1 Manage graphics extensions (HO)
-
-(d:/Program Files/TexLive/texmf-dist/tex/generic/oberdiek/kvdefinekeys.sty
-Package: kvdefinekeys 2011/04/07 v1.3 Define keys (HO)
-))
-(d:/Program Files/TexLive/texmf-dist/tex/latex/oberdiek/kvoptions.sty
-Package: kvoptions 2011/06/30 v3.11 Key value format for package options (HO)
-
-(d:/Program Files/TexLive/texmf-dist/tex/generic/oberdiek/kvsetkeys.sty
-Package: kvsetkeys 2012/04/25 v1.16 Key value parser (HO)
-
-(d:/Program Files/TexLive/texmf-dist/tex/generic/oberdiek/etexcmds.sty
-Package: etexcmds 2011/02/16 v1.5 Avoid name clashes with e-TeX commands (HO)
-Package etexcmds Info: Could not find \expanded.
-(etexcmds)             That can mean that you are not using pdfTeX 1.50 or
-(etexcmds)             that some package has redefined \expanded.
-(etexcmds)             In the latter case, load this package earlier.
-)))
-Package grfext Info: Graphics extension search list:
-(grfext)             [.png,.pdf,.jpg,.mps,.jpeg,.jbig2,.jb2,.PNG,.PDF,.JPG,.JPE
-G,.JBIG2,.JB2,.eps]
-(grfext)             \AppendGraphicsExtensions on input line 452.
-
-(d:/Program Files/TexLive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
-File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
-e
-))
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <12> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 50.
 LaTeX Font Info:    Try loading font information for OMS+ptm on input line 50.
-
-(d:/Program Files/TexLive/texmf-dist/tex/latex/psnfss/omsptm.fd
+ (/usr/share/texmf-texlive/tex/latex/psnfss/omsptm.fd
 File: omsptm.fd 
 )
 LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <8> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 50.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <9> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 54.
-
-(./abstract.tex)
+ (./abstract.tex)
 LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <9> not available
 (Font)              Font shape `OT1/ptm/b/it' tried instead on input line 58.
- (./intro.tex) (./features.tex) (./training.tex)
-(./segmentation.tex
 
-LaTeX Warning: Citation `silenceRemove' on page 1 undefined on input line 1.
-
-<<<<<<< HEAD
-]) (./classification.tex)
-(./results.tex
-=======
-[1{d:/Program Files/TexLive/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
+(./intro.tex) (./features.tex) (./training.tex) [1{/var/lib/texmf/fonts/map/pdf
+tex/updmap/pdftex.map}
 
 
 
-])
-(./classification.tex) (./results.tex
->>>>>>> 0c711cb0f9f96dcf081b1b2f654c8f8c36160ae2
+] (./segmentation.tex
+
+LaTeX Warning: Citation `silenceRemove' on page 2 undefined on input line 1.
+
+) (./classification.tex) (./results.tex
 Package epstopdf Info: Source file: <confmatrix1.eps>
 (epstopdf)                    date: 2013-04-14 23:04:24
 (epstopdf)                    size: 17460 bytes
 (epstopdf)             Output file: <confmatrix1-eps-converted-to.pdf>
-<<<<<<< HEAD
 (epstopdf)                    date: 2013-04-14 23:17:19
 (epstopdf)                    size: 11476 bytes
 (epstopdf)             Command: <epstopdf --outfile=confmatrix1-eps-converted-t
 o.pdf confmatrix1.eps>
 (epstopdf)             \includegraphics on input line 18.
 Package epstopdf Info: Output file is already uptodate.
- <confmatrix1-eps-converted-to.pdf, id=10, 562.1pt x 421.575pt>
-=======
-(epstopdf)                    date: 2013-04-14 23:09:42
-(epstopdf)                    size: 11476 bytes
-(epstopdf)             Command: <repstopdf --outfile=confmatrix1-eps-converted-
-to.pdf confmatrix1.eps>
-(epstopdf)             \includegraphics on input line 18.
-Package epstopdf Info: Output file is already uptodate.
 
-<confmatrix1-eps-converted-to.pdf, id=11, 562.1pt x 421.575pt>
->>>>>>> 0c711cb0f9f96dcf081b1b2f654c8f8c36160ae2
+<confmatrix1-eps-converted-to.pdf, id=10, 562.1pt x 421.575pt>
 File: confmatrix1-eps-converted-to.pdf Graphic file (type pdf)
 
 <use confmatrix1-eps-converted-to.pdf>
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
 Package epstopdf Info: Source file: <confmatrix2.eps>
 (epstopdf)                    date: 2013-04-14 23:04:24
 (epstopdf)                    size: 17454 bytes
 (epstopdf)             Output file: <confmatrix2-eps-converted-to.pdf>
-<<<<<<< HEAD
 (epstopdf)                    date: 2013-04-14 23:17:19
 (epstopdf)                    size: 11485 bytes
 (epstopdf)             Command: <epstopdf --outfile=confmatrix2-eps-converted-t
 o.pdf confmatrix2.eps>
 (epstopdf)             \includegraphics on input line 25.
 Package epstopdf Info: Output file is already uptodate.
+
 <confmatrix2-eps-converted-to.pdf, id=11, 562.1pt x 421.575pt>
 File: confmatrix2-eps-converted-to.pdf Graphic file (type pdf)
 
-<use confmatrix2-eps-converted-to.pdf>
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-=======
-(epstopdf)                    date: 2013-04-14 23:09:44
-(epstopdf)                    size: 11485 bytes
-(epstopdf)             Command: <repstopdf --outfile=confmatrix2-eps-converted-
-to.pdf confmatrix2.eps>
-(epstopdf)             \includegraphics on input line 25.
-Package epstopdf Info: Output file is already uptodate.
-
-<confmatrix2-eps-converted-to.pdf, id=12, 562.1pt x 421.575pt>
-File: confmatrix2-eps-converted-to.pdf Graphic file (type pdf)
-
-<use confmatrix2-eps-converted-to.pdf>
-Package pdftex.def Info: confmatrix2-eps-converted-to.pdf used on input line 25
-.
-(pdftex.def)             Requested size: 241.84842pt x 181.38306pt.
->>>>>>> 0c711cb0f9f96dcf081b1b2f654c8f8c36160ae2
-) (./conclusion.tex)
+<use confmatrix2-eps-converted-to.pdf>) (./conclusion.tex)
 
 LaTeX Warning: Citation `cJones2003' on page 2 undefined on input line 101.
 
@@ -374,33 +276,26 @@ LaTeX Warning: Citation `aSmith2000' on page 2 undefined on input line 101.
 
 LaTeX Warning: Citation `aaspweb' on page 2 undefined on input line 104.
 
-<<<<<<< HEAD
-No file aasp-challenge.bbl.
-[2 <./confmatrix1-eps-converted-to.pdf> <./confmatrix2-eps-converted-to.pdf>]
-(./aasp-challenge.aux)
-=======
 
-Underfull \vbox (badness 2050) has occurred while \output is active []
+Underfull \vbox (badness 3417) has occurred while \output is active []
 
  [2 <./confmatrix1-eps-converted-to.pdf> <./confmatrix2-eps-converted-to.pdf>]
 No file aasp-challenge.bbl.
 [3
 
 ] (./aasp-challenge.aux)
->>>>>>> 0c711cb0f9f96dcf081b1b2f654c8f8c36160ae2
 
 LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
-<<<<<<< HEAD
- 2241 strings out of 493848
- 28727 string characters out of 1152822
- 92145 words of memory out of 3000000
- 5443 multiletter control sequences out of 15000+50000
+ 2242 strings out of 493848
+ 28742 string characters out of 1152822
+ 90145 words of memory out of 3000000
+ 5444 multiletter control sequences out of 15000+50000
  21826 words of font info for 48 fonts, out of 3000000 for 9000
  714 hyphenation exceptions out of 8191
- 41i,11n,24p,1095b,292s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 41i,10n,23p,1134b,274s stack positions out of 5000i,500n,10000p,200000b,50000s
 {/usr/share/texmf-texlive/fonts/enc/dvips/base/8r.enc}</usr/share/texmf-texli
 ve/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texmf-texlive/fonts/typ
 e1/public/amsfonts/cm/cmmi9.pfb></usr/share/texmf-texlive/fonts/type1/public/am
@@ -410,33 +305,9 @@ share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/share/texmf-
 texlive/fonts/type1/urw/times/utmb8a.pfb></usr/share/texmf-texlive/fonts/type1/
 urw/times/utmbi8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmr8a.pf
 b></usr/share/texmf-texlive/fonts/type1/urw/times/utmri8a.pfb>
-Output written on aasp-challenge.pdf (2 pages, 128150 bytes).
+Output written on aasp-challenge.pdf (3 pages, 129266 bytes).
 PDF statistics:
- 64 PDF objects out of 1000 (max. 8388607)
-=======
- 2397 strings out of 495020
- 32056 string characters out of 3180603
- 94705 words of memory out of 3000000
- 5513 multiletter control sequences out of 15000+200000
- 21826 words of font info for 48 fonts, out of 3000000 for 9000
- 36 hyphenation exceptions out of 8191
- 37i,10n,23p,1134b,279s stack positions out of 5000i,500n,10000p,200000b,50000s
-{d:/Program Files/TexLive/texmf-dist/fonts/enc/dvips/base/8r.enc}<d:/Program 
-Files/TexLive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb><d:/Program F
-iles/TexLive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb><d:/Program Fi
-les/TexLive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb><d:/Program File
-s/TexLive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb><d:/Program Files/
-TexLive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb><d:/Program Files/T
-exLive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb><d:/Program Files/Te
-xLive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb><d:/Program Files/TexLive/tex
-mf-dist/fonts/type1/urw/times/utmbi8a.pfb><d:/Program Files/TexLive/texmf-dist/
-fonts/type1/urw/times/utmr8a.pfb><d:/Program Files/TexLive/texmf-dist/fonts/typ
-e1/urw/times/utmri8a.pfb>
-Output written on aasp-challenge.pdf (3 pages, 115378 bytes).
-PDF statistics:
- 69 PDF objects out of 1000 (max. 8388607)
- 49 compressed objects within 1 object stream
->>>>>>> 0c711cb0f9f96dcf081b1b2f654c8f8c36160ae2
+ 67 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  11 words of extra memory for PDF output out of 10000 (max. 10000000)
 
