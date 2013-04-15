@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.12.14)  14 APR 2013 23:04
+=======
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/W32TeX) (format=pdflatex 2012.12.21)  14 APR 2013 23:09
+>>>>>>> eb4140e0e712c4d8ab608dd2d55784c1aaa12f7e
 entering extended mode
  %&-line parsing enabled.
 **aasp-challenge.tex
@@ -206,6 +210,7 @@ File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 
+<<<<<<< HEAD
 LaTeX Warning: File `confmatrix2-eps-converted-to.pdf' not found on input line 
 25.
 
@@ -225,6 +230,58 @@ If that doesn't work, type  X <return>  to quit.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
+=======
+]) (./classification.tex) (./results.tex
+
+LaTeX Warning: Reference `fig:confmat_perfect' on page 2 undefined on input lin
+e 14.
+
+
+LaTeX Warning: Reference `fig:confmat_seg' on page 2 undefined on input line 14
+.
+
+Package epstopdf Info: Source file: <confmatrix1.eps>
+(epstopdf)                    date: 2013-04-14 23:07:37
+(epstopdf)                    size: 17460 bytes
+(epstopdf)             Output file: <confmatrix1-eps-converted-to.pdf>
+(epstopdf)             Command: <repstopdf --outfile=confmatrix1-eps-converted-
+to.pdf confmatrix1.eps>
+(epstopdf)             \includegraphics on input line 18.
+runsystem(repstopdf --outfile=confmatrix1-eps-converted-to.pdf confmatrix1.eps)
+...executed safely (allowed).
+
+Package epstopdf Info: Result file: <confmatrix1-eps-converted-to.pdf>
+(epstopdf)                    date: 2013-04-14 23:09:42
+(epstopdf)                    size: 11476 bytes.
+<confmatrix1-eps-converted-to.pdf, id=11, 562.1pt x 421.575pt>
+File: confmatrix1-eps-converted-to.pdf Graphic file (type pdf)
+
+<use confmatrix1-eps-converted-to.pdf>
+Package pdftex.def Info: confmatrix1-eps-converted-to.pdf used on input line 18
+.
+(pdftex.def)             Requested size: 241.84842pt x 181.38306pt.
+Package epstopdf Info: Source file: <confmatrix2.eps>
+(epstopdf)                    date: 2013-04-14 23:07:37
+(epstopdf)                    size: 17454 bytes
+(epstopdf)             Output file: <confmatrix2-eps-converted-to.pdf>
+(epstopdf)             Command: <repstopdf --outfile=confmatrix2-eps-converted-
+to.pdf confmatrix2.eps>
+(epstopdf)             \includegraphics on input line 25.
+runsystem(repstopdf --outfile=confmatrix2-eps-converted-to.pdf confmatrix2.eps)
+...executed safely (allowed).
+
+Package epstopdf Info: Result file: <confmatrix2-eps-converted-to.pdf>
+(epstopdf)                    date: 2013-04-14 23:09:44
+(epstopdf)                    size: 11485 bytes.
+
+<confmatrix2-eps-converted-to.pdf, id=12, 562.1pt x 421.575pt>
+File: confmatrix2-eps-converted-to.pdf Graphic file (type pdf)
+
+<use confmatrix2-eps-converted-to.pdf>
+Package pdftex.def Info: confmatrix2-eps-converted-to.pdf used on input line 25
+.
+(pdftex.def)             Requested size: 241.84842pt x 181.38306pt.
+>>>>>>> eb4140e0e712c4d8ab608dd2d55784c1aaa12f7e
 ) (./conclusion.tex)
 
 LaTeX Warning: Citation `cJones2003' on page 2 undefined on input line 101.
@@ -235,13 +292,25 @@ LaTeX Warning: Citation `aSmith2000' on page 2 undefined on input line 101.
 
 LaTeX Warning: Citation `aaspweb' on page 2 undefined on input line 104.
 
+<<<<<<< HEAD
 No file aasp-challenge.bbl.
 [2] (./aasp-challenge.aux)
+=======
+[2 <./confmatrix1-eps-converted-to.pdf> <./confmatrix2-eps-converted-to.pdf>]
+No file aasp-challenge.bbl.
+[3
+
+] (./aasp-challenge.aux)
+>>>>>>> eb4140e0e712c4d8ab608dd2d55784c1aaa12f7e
 
 LaTeX Warning: There were undefined references.
 
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
  ) 
 Here is how much of TeX's memory you used:
+<<<<<<< HEAD
  1833 strings out of 493848
  21824 string characters out of 1152822
  81857 words of memory out of 3000000
@@ -258,6 +327,30 @@ ype1/urw/times/utmri8a.pfb>
 Output written on aasp-challenge.pdf (2 pages, 74801 bytes).
 PDF statistics:
  34 PDF objects out of 1000 (max. 8388607)
+=======
+ 2396 strings out of 495020
+ 32041 string characters out of 3180603
+ 94617 words of memory out of 3000000
+ 5512 multiletter control sequences out of 15000+200000
+ 21826 words of font info for 48 fonts, out of 3000000 for 9000
+ 36 hyphenation exceptions out of 8191
+ 37i,10n,23p,1095b,278s stack positions out of 5000i,500n,10000p,200000b,50000s
+{d:/Program Files/TexLive/texmf-dist/fonts/enc/dvips/base/8r.enc}<d:/Program 
+Files/TexLive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb><d:/Program F
+iles/TexLive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb><d:/Program Fi
+les/TexLive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb><d:/Program File
+s/TexLive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb><d:/Program Files/
+TexLive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb><d:/Program Files/T
+exLive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb><d:/Program Files/Te
+xLive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb><d:/Program Files/TexLive/tex
+mf-dist/fonts/type1/urw/times/utmbi8a.pfb><d:/Program Files/TexLive/texmf-dist/
+fonts/type1/urw/times/utmr8a.pfb><d:/Program Files/TexLive/texmf-dist/fonts/typ
+e1/urw/times/utmri8a.pfb>
+Output written on aasp-challenge.pdf (3 pages, 115501 bytes).
+PDF statistics:
+ 69 PDF objects out of 1000 (max. 8388607)
+ 49 compressed objects within 1 object stream
+>>>>>>> eb4140e0e712c4d8ab608dd2d55784c1aaa12f7e
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 
