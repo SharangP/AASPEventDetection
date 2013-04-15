@@ -4,7 +4,6 @@ function eventDetection(inputFile, outputFile )
 %   events are written to the path of outputFile
 
 init;
-inputFile = inputFile;
 pointOhOne = 0.05;
 
 %% Get Features from Data
