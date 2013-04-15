@@ -1,11 +1,4 @@
-The classification stage of our system employs two levels of classification. As input
-the classifier takes in an event signal and first classifies what type of event it is.
-Then based upon the type of event the signal is passed through a type-specific 
-classifier which determines the exact event contained in the signal. In the second stage
-each type has its own classifier.
-
-Each level of classification in the system was trained with features extracted from the 
-provided training data. The first stage classifier was trained using the full set of 
-extracted features for all events. The second stage classifiers were each trained using 
-features extracted only from training signals of the correct type. Additionally, the 
-features used for training were chosen to best describe the type of event being classified.
+The classification stage of our system employs a generalized likelihood ratio test 
+classifier. The training data was broken up into frames and a full set of features
+was extracted from each frame. Each set of features was labeled with its class number
+and used as training data for the classifier.
